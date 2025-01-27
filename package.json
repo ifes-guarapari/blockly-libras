@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "Open source initiative for a set of Blockly library extensions with support for Libras (Brazilian Sign Language)",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "unpkg": "dist/index.js",
   "keywords": [
     "blockly",
     "plugin",
@@ -10,15 +12,43 @@
   ],
   "author": "Ifes Guarapari",
   "license": "MIT",
+  "directories": {
+    "dist": "dist",
+    "src": "src"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
   "devDependencies": {
+    "@blockly/dev-scripts": "^4.0.7",
+    "@blockly/dev-tools": "^8.0.12",
+    "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
+    "@eslint/js": "^9.19.0",
     "@types/node": "^22.10.10",
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/parser": "^8.22.0",
     "commitizen": "^4.3.1",
     "commitlint": "^19.6.1",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^9.19.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.31.0",
+    "globals": "^15.14.0",
     "husky": "^9.1.7",
     "mocha": "^11.1.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.22.0"
+  },
+  "peerDependencies": {
+    "blockly": "^11.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "npm test"
+    }
   },
   "lint-staged": {
     "*.js": [
@@ -27,6 +57,12 @@
     ]
   },
   "scripts": {
-    "test": "mocha"
+    "audit:fix": "blockly-scripts auditFix",
+    "build": "blockly-scripts build",
+    "clean": "blockly-scripts clean",
+    "lint": "eslint .",
+    "predeploy": "blockly-scripts predeploy",
+    "start": "blockly-scripts start",
+    "test": "blockly-scripts test"
   }
 }

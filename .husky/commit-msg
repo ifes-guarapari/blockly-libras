@@ -1,0 +1,19 @@
+sh
+#!/bin/sh
+
+# Check if a commit message file path is provided as an argument.
+if [ -z "$1" ]; then
+  echo "Error: No commit message file path provided." >&2
+  exit 1
+fi
+
+# Check if the commit message file exists.
+if [ ! -f "$1" ]; then
+  echo "Error: Commit message file '$1' not found." >&2
+  exit 1
+fi
+
+# Run commitlint with the commit message file as input.
+npx --no-install commitlint --edit "$1"
+
+exit $?
